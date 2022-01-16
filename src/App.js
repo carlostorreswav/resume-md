@@ -1,36 +1,20 @@
-import styled from "styled-components"
-import Markdown from "markdown-to-jsx"
-import MDEditor from '@uiw/react-md-editor';
-import { useState } from "react"
-
-const MainDiv = styled.div`
-  margin: 0px;
-  padding: 0px;
-  color:black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`
-
-const MainWrapper = styled.div`
-  height: 95%;
-  width: 95%;
-`
+import Editor from "./Editor";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+} from "react-router-dom";
+import Page from "./Page";
 
 const App = () => {
-  const [value, setValue] = useState("**Hello world!!!**");
-  return <MainDiv>
-    <MainWrapper>
-      <MDEditor
-        style={{ width: "100%", height: "100%" }}
-        height={"100%"}
-        value={value}
-        onChange={setValue}
-      />
-    </MainWrapper>
-      {/* <MDEditor.Markdown source={value} /> */}
-  </MainDiv>
+  return (
+  <Router>
+    <Routes>
+      <Route exact path="/" element={<Editor/>}/>
+      <Route exact path="/:id" element={<Page/>}/>
+    </Routes>
+  </Router>
+  )
 }
 
 export default App
