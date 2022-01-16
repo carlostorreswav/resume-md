@@ -1,0 +1,36 @@
+import styled from "styled-components"
+import Markdown from "markdown-to-jsx"
+import MDEditor from '@uiw/react-md-editor';
+import { useState } from "react"
+
+const MainDiv = styled.div`
+  margin: 0px;
+  padding: 0px;
+  color:black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
+
+const MainWrapper = styled.div`
+  height: 95%;
+  width: 95%;
+`
+
+const App = () => {
+  const [value, setValue] = useState("**Hello world!!!**");
+  return <MainDiv>
+    <MainWrapper>
+      <MDEditor
+        style={{ width: "100%", height: "100%" }}
+        height={"100%"}
+        value={value}
+        onChange={setValue}
+      />
+    </MainWrapper>
+      {/* <MDEditor.Markdown source={value} /> */}
+  </MainDiv>
+}
+
+export default App
