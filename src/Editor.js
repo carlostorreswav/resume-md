@@ -22,7 +22,7 @@ const Editor = () => {
   return <MainDiv>
     <MainWrapper>
       <MDEditor
-        style={{ width: "100%", height: "100%" }}
+        style={{ width: "100%" }}
         height={"100%"}
         value={value}
         onChange={setValue}
