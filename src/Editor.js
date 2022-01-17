@@ -13,7 +13,7 @@ const MainDiv = styled.div`
 `
 
 const MainWrapper = styled.div`
-  height: 95%;
+  height: 97%;
   width: 95%;
 `
 
