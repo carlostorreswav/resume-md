@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import { createGlobalStyle } from 'styled-components'
+import React from "react"
+import ReactDOM from "react-dom"
+import App from "./App"
+import { createGlobalStyle } from "styled-components"
+// import { FirebaseProvider } from "./FirebaseContext"
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -13,8 +14,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <React.StrictMode>
-    <GlobalStyle/>
-      <App />
+    <GlobalStyle />
+    {/* <FirebaseProvider> */}
+    <App />
+    {/* </FirebaseProvider> */}
   </React.StrictMode>,
-  document.getElementById('root')
-);
+  document.getElementById("root")
+)
