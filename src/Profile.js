@@ -1,6 +1,5 @@
 // Import FirebaseAuth and firebase.
-import React, { useContext, useEffect, useState } from "react"
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
+import React, { useContext } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import styled from "styled-components"
 import { AppContext } from "./AppContext"
@@ -42,7 +41,6 @@ const ProfileImg = styled.img`
   width: 50px;
   height: 50px;
 `
-const CustomButton = styled.button``
 
 const AbsResume = styled.div`
   float: right;

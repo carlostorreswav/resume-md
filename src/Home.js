@@ -1,6 +1,5 @@
 import Editor from "./Editor"
 import Files from "./Files"
-import Signin from "./Signin"
 import styled from "styled-components"
 import Header from "./Header"
 import Footer from "./Footer"
@@ -10,10 +9,6 @@ const MainGrid = styled.div`
   height: 100vh;
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
-`
-
-const GridElm = styled.div`
-  min-width: 200px;
 `
 
 const GridRow = styled.div`
@@ -27,8 +22,6 @@ const GridEditor = styled.div`
   align-items: center;
   background-color: white;
 `
-
-const GridHeader = styled.div``
 
 const Home = () => {
   return (

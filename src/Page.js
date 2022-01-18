@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
-import { useContext, useRef, useState } from "react"
+import { useContext, useState } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import MDEditor from "@uiw/react-md-editor"
 import styled from "styled-components"
@@ -44,6 +44,7 @@ const Page = () => {
             setResume(prev => ({ ...prev, loading: false, data: "**PAGE NOT FOUND**" }))
           }
         })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ctx.db])
 
   const printResume = () => {

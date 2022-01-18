@@ -1,19 +1,9 @@
 import styled from "styled-components"
 import MDEditor from "@uiw/react-md-editor"
-import { useContext, useRef, useState } from "react"
+import { useContext, useRef } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import { AppContext } from "./AppContext"
 import { Button } from "./Components"
-
-const MainDiv = styled.div`
-  margin: 0px;
-  padding: 0px;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-`
 
 const MainWrapper = styled.div`
   height: 98%;

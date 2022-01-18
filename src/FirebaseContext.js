@@ -41,6 +41,7 @@ export const FirebaseProvider = ({ children }) => {
         localStorage.removeItem("user")
       }
     })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -52,6 +53,7 @@ export const FirebaseProvider = ({ children }) => {
       user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null,
       signin: () => <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />,
     }))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [auth.currentUser])
 
   return <FirebaseContext.Provider value={{ ctx, setCtx }}>{children}</FirebaseContext.Provider>
