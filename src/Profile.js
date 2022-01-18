@@ -12,7 +12,7 @@ const ProfileMain = styled.div`
   margin: 0 auto;
   /* padding-top: ${p => (p.touched === true ? "0px" : "120px")}; */
   transition: padding-top 0.3s ease-in-out;
-  overflow: hidden;
+  /* overflow: hidden; */
 `
 
 const ProfileDiv = styled.div`

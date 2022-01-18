@@ -60,7 +60,7 @@ const Files = () => {
   }
 
   const viewSite = resume => {
-    console.log("viewSite", resume)
+    window.location.href = resume.data.title
   }
 
   const copyLink = resume => {
