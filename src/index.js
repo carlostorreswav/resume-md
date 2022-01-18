@@ -7,8 +7,7 @@ import { AppProvider } from "./AppContext"
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #fafafa;
-    font-family: 'Roboto', sans-serif;
+    font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
     margin: 0;
   }
 `

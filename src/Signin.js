@@ -2,22 +2,14 @@
 import React, { useContext, useEffect, useState } from "react"
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import { FirebaseContext } from "./FirebaseContext"
+import styled from "styled-components"
+
+const MainDiv = styled.div``
+
 const Signin = () => {
   const { ctx } = useContext(FirebaseContext)
   console.log("ctx", ctx)
-  return (
-    <>
-      {ctx.user ? (
-        <>
-          <h2>{ctx.user.displayName}</h2>
-          <img src={ctx.user.photoURL} alt={ctx.user.displayName} />
-          <button onClick={() => ctx.auth.signOut()}>Sign out</button>
-        </>
-      ) : (
-        <>{ctx.signin && ctx.signin()}</>
-      )}
-    </>
-  )
+  return <MainDiv>{!ctx.user && <>{ctx.signin && ctx.signin()}</>}</MainDiv>
 }
 
 export default Signin

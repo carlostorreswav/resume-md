@@ -3,6 +3,7 @@ import MDEditor from "@uiw/react-md-editor"
 import { useContext, useRef, useState } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import { AppContext } from "./AppContext"
+import { Button } from "./Components"
 
 const MainDiv = styled.div`
   margin: 0px;
@@ -19,7 +20,18 @@ const MainWrapper = styled.div`
   width: 98%;
 `
 
-const OptionDiv = styled.div``
+const OptionDiv = styled.div`
+  text-align: center;
+`
+
+const CustomInput = styled.input`
+  min-width: 200px;
+  height: 18px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+`
 
 const Editor = () => {
   const { app, setApp } = useContext(AppContext)
@@ -63,19 +75,27 @@ const Editor = () => {
       })
   }
 
+  const saveProcLander = () => {
+    if (!ctx.user) {
+      alert("Login to Save your Resume")
+    } else {
+      saveProc()
+    }
+  }
+
   const hRef = useRef()
 
   return (
     <>
       <MainWrapper>
         <OptionDiv ref={hRef}>
-          <input
+          <CustomInput
             type="text"
             placeholder="Your custom endpoint"
             onChange={e => setApp(prev => ({ ...prev, title: e.target.value }))}
             value={app.title}
-          ></input>
-          <button onClick={() => saveProc()}>SAVE RESUME</button>
+          ></CustomInput>
+          <Button onClick={() => saveProcLander()}>SAVE RESUME</Button>
         </OptionDiv>
 
         <MDEditor
@@ -83,7 +103,7 @@ const Editor = () => {
           // height={"100%"}
           height={`calc(100% - ${hRef?.current?.clientHeight || 40}px)`}
           value={app.md}
-          onChange={e => setApp(prev => ({ ...prev, md: e }))}
+          onChange={e => setApp(prev => ({ ...prev, md: e, touched: true }))}
         />
       </MainWrapper>
       {/* <MDEditor.Markdown source={value} /> */}

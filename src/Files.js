@@ -1,6 +1,32 @@
 import { useContext, useEffect, useState } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import { AppContext } from "./AppContext"
+import { Button, CustomHr } from "./Components"
+import styled from "styled-components"
+
+const FilesMain = styled.div`
+  width: 100%;
+`
+
+const NameCard = styled.div`
+  /* border: 1px solid grey; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const NameTitle = styled.div`
+  font-weight: bold;
+  cursor: pointer;
+  min-width: 200px;
+`
+
+const ListTitle = styled.div`
+  font-size: 20px;
+  font-weight: bold;
+  margin: 20px;
+  text-align: center;
+`
 
 const Files = () => {
   const { ctx } = useContext(FirebaseContext)
@@ -33,16 +59,31 @@ const Files = () => {
     ctx.db.collection("resumes").doc(resume.data.indexID).delete()
   }
 
+  const viewSite = resume => {
+    console.log("viewSite", resume)
+  }
+
+  const copyLink = resume => {
+    console.log("viewSite", resume)
+  }
+
   return (
-    <>
+    <FilesMain>
+      <ListTitle>
+        {resumes?.length > 0 ? "Resume List" : ctx.user ? "No Resumes" : "Sign in to start"}
+      </ListTitle>
       {resumes?.length > 0 &&
         resumes.map(resume => (
-          <div key={resume.id}>
-            <h2 onClick={() => selectResume(resume)}>{resume.data.title}</h2>
-            <button onClick={() => deleteProc(resume)}>DELETE</button>
-          </div>
+          <NameCard key={resume.id}>
+            <NameTitle onClick={() => selectResume(resume)}>{resume.data.title}</NameTitle>
+            <Button onClick={() => selectResume(resume)}>Edit</Button>
+            <Button onClick={() => deleteProc(resume)}>Delete</Button>
+            <Button onClick={() => viewSite(resume)}>Preview</Button>
+            <Button onClick={() => copyLink(resume)}>Copy Link</Button>
+          </NameCard>
         ))}
-    </>
+      <CustomHr />
+    </FilesMain>
   )
 }
 

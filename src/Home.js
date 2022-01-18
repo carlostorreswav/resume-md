@@ -2,11 +2,14 @@ import Editor from "./Editor"
 import Files from "./Files"
 import Signin from "./Signin"
 import styled from "styled-components"
+import Header from "./Header"
+import Footer from "./Footer"
+import Profile from "./Profile"
 
 const MainGrid = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-rows: minmax(100px, auto) minmax(100px, auto) 1fr;
+  grid-template-rows: auto auto auto 1fr auto;
 `
 
 const GridElm = styled.div`
@@ -15,14 +18,14 @@ const GridElm = styled.div`
 
 const GridRow = styled.div`
   display: flex;
-  background-color: pink;
+  background-color: white;
 `
 
 const GridEditor = styled.div`
-  background-color: #f0f340;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 `
 
 const GridHeader = styled.div``
@@ -30,18 +33,15 @@ const GridHeader = styled.div``
 const Home = () => {
   return (
     <MainGrid>
-      <GridHeader>RESUME MD</GridHeader>
+      <Header />
+      <Profile />
       <GridRow>
-        <GridElm>
-          <Signin />
-        </GridElm>
-        <GridElm>
-          <Files />
-        </GridElm>
+        <Files />
       </GridRow>
       <GridEditor>
         <Editor />
       </GridEditor>
+      <Footer />
     </MainGrid>
   )
 }
