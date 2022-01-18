@@ -1,12 +1,14 @@
 import Editor from "./Editor"
-import Files from "./Files"
-import Firebase from "./Firebase"
+// import Files from "./Files"
+import Signin from "./Signin"
+// import Firebase from "./Firebase"
 
 const Home = () => {
   return (
     <>
-      <Firebase />
-      <Files />
+      {/* <Firebase /> */}
+      <Signin />
+      {/* <Files /> */}
       <Editor />
     </>
   )
