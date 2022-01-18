@@ -1,51 +1,47 @@
-import { useEffect, useState } from "react"
-import { auth, db } from "./Firebase"
+import { useContext, useEffect, useState } from "react"
+import { FirebaseContext } from "./FirebaseContext"
+import { AppContext } from "./AppContext"
 
 const Files = () => {
-  const [files, setFiles] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [msg, setMsg] = useState("")
+  const { ctx } = useContext(FirebaseContext)
+  const [resumes, setResumes] = useState([])
+  const { app, setApp } = useContext(AppContext)
 
   useEffect(() => {
-    console.log("useEffect")
-    if (auth.currentUser) {
-      console.log("currentUser")
-      db.collection("files")
-        .doc(auth.currentUser.uid)
-        .get()
-        .then(doc => {
-          if (doc.exists) {
-            setFiles(doc.data().files)
-          } else {
-            setFiles([])
-            setLoading(false)
-            setMsg("No files found.")
-          }
-        })
-        .catch(error => {
-          console.log("Error getting document:", error)
-        })
-    } else {
-      setFiles([])
-      setLoading(false)
-      setMsg("Please sign in to view your files.")
-    }
-  }, [auth])
+    ctx.db &&
+      ctx.db.collection("resumesIndex").onSnapshot(snapshot => {
+        const resumes = snapshot.docs.map(doc => ({ data: doc.data(), id: doc.id }))
+        const userResumesIndex = resumes.filter(resume => resume.data.owner === ctx.user.uid)
+        setResumes(userResumesIndex)
+      })
+  }, [ctx.db])
+
+  const selectResume = resume => {
+    console.log("selectResume", resume)
+    ctx.db
+      .collection("resumes")
+      .doc(resume.data.indexID)
+      .get()
+      .then(doc => {
+        console.log("doc", doc.data())
+        setApp({ ...app, md: doc.data().md, title: doc.data().title })
+      })
+  }
+
+  const deleteProc = resume => {
+    ctx.db.collection("resumesIndex").doc(resume.id).delete()
+    ctx.db.collection("resumes").doc(resume.data.indexID).delete()
+  }
 
   return (
     <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <ul>
-          {files.map(file => (
-            <li key={file.id}>
-              <a href={file.url}>{file.name}</a>
-            </li>
-          ))}
-          {msg && <p>{msg}</p>}
-        </ul>
-      )}
+      {resumes?.length > 0 &&
+        resumes.map(resume => (
+          <div key={resume.id}>
+            <h2 onClick={() => selectResume(resume)}>{resume.data.title}</h2>
+            <button onClick={() => deleteProc(resume)}>DELETE</button>
+          </div>
+        ))}
     </>
   )
 }
