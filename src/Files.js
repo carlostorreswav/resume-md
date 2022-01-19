@@ -60,10 +60,6 @@ const Files = () => {
     ctx.db.collection("resumes").doc(resume.data.indexID).delete()
   }
 
-  const viewSite = resume => {
-    window.location.href = resume.data.title
-  }
-
   const copyLink = resume => {
     console.log("viewSite", resume)
     const copyText = document.createElement("textarea")
@@ -86,7 +82,11 @@ const Files = () => {
             <Button onClick={() => selectResume(resume)}>Edit</Button>
             <Button onClick={() => deleteProc(resume)}>Delete</Button>
             <Button>
-              <a href={`https://resume-md.vercel.app/${resume.data.title}`} target="_blank">
+              <a
+                href={`https://resume-md.vercel.app/${resume.data.title}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 Preview Site
               </a>
             </Button>
