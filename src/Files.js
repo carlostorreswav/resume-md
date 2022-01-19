@@ -24,7 +24,7 @@ const NameTitle = styled.div`
 const ListTitle = styled.div`
   font-size: 20px;
   font-weight: bold;
-  margin: 20px;
+  margin: 8px;
   text-align: center;
 `
 
@@ -66,6 +66,12 @@ const Files = () => {
 
   const copyLink = resume => {
     console.log("viewSite", resume)
+    const copyText = document.createElement("textarea")
+    copyText.value = "https://resume-md.vercel.app/" + resume.data.title
+    document.body.appendChild(copyText)
+    copyText.select()
+    document.execCommand("copy")
+    document.body.removeChild(copyText)
   }
 
   return (
@@ -79,7 +85,11 @@ const Files = () => {
             <NameTitle onClick={() => selectResume(resume)}>{resume.data.title}</NameTitle>
             <Button onClick={() => selectResume(resume)}>Edit</Button>
             <Button onClick={() => deleteProc(resume)}>Delete</Button>
-            <Button onClick={() => viewSite(resume)}>Preview</Button>
+            <Button>
+              <a href={`https://resume-md.vercel.app/${resume.data.title}`} target="_blank">
+                Preview Site
+              </a>
+            </Button>
             <Button onClick={() => copyLink(resume)}>Copy Link</Button>
           </NameCard>
         ))}

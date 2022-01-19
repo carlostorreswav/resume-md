@@ -4,7 +4,7 @@ import { AppContext } from "./AppContext"
 
 const HeaderMain = styled.div`
   /* height: 100%; */
-  height: ${p => (p.touched === true ? "0px" : "30px")};
+  height: ${p => (p.touched === true ? "0px" : "60px")};
   background-color: white;
   color: rgb(55, 53, 47);
   transition: height 0.5s ease-in-out;
@@ -15,7 +15,7 @@ const HeaderMain = styled.div`
 const SubTitle = styled.div`
   text-align: center;
   font-weight: normal;
-  margin-top: -10px;
+  margin-top: 30px;
 `
 
 const Footer = () => {
@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     <HeaderMain touched={app.touched}>
       <SubTitle>
-        <p>This is an open source project made by Carlos Torres</p>
+        <p>This is free open source simple app made by Carlos Torres</p>
       </SubTitle>
     </HeaderMain>
   )

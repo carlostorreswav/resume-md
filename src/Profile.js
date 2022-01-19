@@ -51,6 +51,10 @@ const AbsResume = styled.div`
   transition-delay: 0.6s;
 `
 
+const AbsWrapper = styled.div`
+  overflow: hidden;
+`
+
 const Profile = () => {
   const { ctx } = useContext(FirebaseContext)
   const { app } = useContext(AppContext)
@@ -66,9 +70,11 @@ const Profile = () => {
       ) : (
         <ProfileDiv2>{ctx.signin && ctx.signin()}</ProfileDiv2>
       )}
-      <AbsResume touched={app.touched}>
-        <h2>Resume.MD</h2>
-      </AbsResume>
+      <AbsWrapper>
+        <AbsResume touched={app.touched}>
+          <h2>Resume.MD</h2>
+        </AbsResume>
+      </AbsWrapper>
       <CustomHr />
     </ProfileMain>
   )
