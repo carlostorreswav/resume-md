@@ -37,7 +37,7 @@ const Files = () => {
     ctx.db &&
       ctx.db.collection("resumesIndex").onSnapshot(snapshot => {
         const resumes = snapshot.docs.map(doc => ({ data: doc.data(), id: doc.id }))
-        const userResumesIndex = resumes.filter(resume => resume.data.owner === ctx.user.uid)
+        const userResumesIndex = resumes.filter(resume => resume.data.owner === ctx?.user?.uid)
         setResumes(userResumesIndex)
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -9,12 +9,12 @@ const Page = lazy(() => import("./Page"))
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Suspense fallback={<></>}>
+      <Suspense fallback={<></>}>
+        <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/:id" element={<Page />} />
-        </Suspense>
-      </Routes>
+        </Routes>
+      </Suspense>
     </Router>
   )
 }
