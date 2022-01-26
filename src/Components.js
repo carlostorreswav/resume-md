@@ -21,3 +21,27 @@ export const CustomHr = styled.hr`
   height: 1px;
   background-color: #ccc;
 `
+
+const MyA = styled.a`
+  color: ${p => p.color || "pink"};
+  text-decoration: ${p => p.textDecoration || "underline"};
+  font-weight: ${p => p.fontWeight || "bold"};
+  cursor: pointer;
+  &:hover {
+    color: ${p => p.hoverColor || "red"};
+  }
+  transition: color 0.2s ease-in-out;
+`
+
+export const CustomA = props => {
+  const { children, ...rest } = props
+  return (
+    <>
+      &nbsp;
+      <MyA href={rest.url} target="_blank" rel="noreferrer" {...rest}>
+        {children}
+      </MyA>
+      &nbsp;
+    </>
+  )
+}

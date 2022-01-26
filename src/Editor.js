@@ -3,10 +3,10 @@ import MDEditor from "@uiw/react-md-editor"
 import { useContext, useRef } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import { AppContext } from "./AppContext"
-import { Button } from "./Components"
+import { Button, CustomA } from "./Components"
 
 const MainWrapper = styled.div`
-  height: 98%;
+  /* height: 98%; */
   width: 98%;
 `
 
@@ -86,6 +86,13 @@ const Editor = () => {
             value={app.title}
           ></CustomInput>
           <Button onClick={() => saveProcLander()}>SAVE RESUME</Button>
+          <br />
+          Your site will be automatically visible at <br />
+          <CustomA color="#333" hoverColor="#000" url={`https://resume-md.vercel.app/${app.title}`}>
+            https://resume-md.vercel.app/{app.title}
+          </CustomA>
+          <br />
+          <br />
         </OptionDiv>
 
         <MDEditor

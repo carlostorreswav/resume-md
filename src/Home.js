@@ -6,7 +6,7 @@ import Footer from "./Footer"
 import Profile from "./Profile"
 
 const MainGrid = styled.div`
-  height: 100vh;
+  /* height: 100vh; */
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
 `

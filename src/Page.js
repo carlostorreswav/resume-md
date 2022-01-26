@@ -18,7 +18,15 @@ const MainDiv = styled.div`
   margin: 2% auto;
   padding: 4%;
   max-width: 1000px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`
+
+const ButtonDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -40px;
 `
 
 const Page = () => {
@@ -65,9 +73,13 @@ const Page = () => {
           <MainDiv>
             <MDEditor.Markdown source={resume.data} />
           </MainDiv>
-          <Button style={{ margin: "20px" }} id="printButton" onClick={() => printResume()}>
-            PRINT RESUME
-          </Button>
+          {resume.data !== "**PAGE NOT FOUND**" && (
+            <ButtonDiv>
+              <Button style={{ margin: "20px" }} id="printButton" onClick={() => printResume()}>
+                PRINT RESUME
+              </Button>
+            </ButtonDiv>
+          )}
         </>
       )}
     </>
