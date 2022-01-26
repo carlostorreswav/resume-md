@@ -33,10 +33,8 @@ const Editor = () => {
       .get()
       .then(snapshot => {
         const resumes = snapshot.docs.map(doc => ({ data: doc.data(), id: doc.id }))
-        console.log("resumes", resumes)
         const resume = resumes.find(resume => resume.data.title === app.title)
         if (resume) {
-          console.log("hay resume con este título")
           if (resume.data.owner === ctx.user.uid) {
             ctx.db
               .collection("resumes")

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import { AppContext } from "./AppContext"
-import { Button, CustomHr } from "./Components"
+import { Button, CustomA, CustomHr } from "./Components"
 import styled from "styled-components"
 
 const FilesMain = styled.div`
@@ -44,13 +44,11 @@ const Files = () => {
   }, [ctx.db])
 
   const selectResume = resume => {
-    console.log("selectResume", resume)
     ctx.db
       .collection("resumes")
       .doc(resume.data.indexID)
       .get()
       .then(doc => {
-        console.log("doc", doc.data())
         setApp({ ...app, md: doc.data().md, title: doc.data().title })
       })
   }
@@ -61,14 +59,20 @@ const Files = () => {
   }
 
   const copyLink = resume => {
-    console.log("viewSite", resume)
     const copyText = document.createElement("textarea")
     copyText.value = "https://resume-md.vercel.app/" + resume.data.title
     document.body.appendChild(copyText)
     copyText.select()
     document.execCommand("copy")
     document.body.removeChild(copyText)
+    setCopy(true)
   }
+
+  const [copy, setCopy] = useState(false)
+
+  useEffect(() => {
+    copy === true && setTimeout(() => setCopy(false), 1000)
+  }, [copy])
 
   return (
     <FilesMain>
@@ -82,15 +86,17 @@ const Files = () => {
             <Button onClick={() => selectResume(resume)}>Edit</Button>
             <Button onClick={() => deleteProc(resume)}>Delete</Button>
             <Button>
-              <a
-                href={`https://resume-md.vercel.app/${resume.data.title}`}
-                target="_blank"
-                rel="noreferrer"
+              <CustomA
+                url={`https://resume-md.vercel.app/${resume.data.title}`}
+                fontWeight="normal"
+                color="#000"
+                hoverColor="white"
+                textDecoration="none"
               >
                 Preview Site
-              </a>
+              </CustomA>
             </Button>
-            <Button onClick={() => copyLink(resume)}>Copy Link</Button>
+            <Button onClick={() => copyLink(resume)}>{copy ? "Copied =D" : "Copy Link"}</Button>
           </NameCard>
         ))}
       <CustomHr />

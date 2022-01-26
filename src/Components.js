@@ -7,10 +7,12 @@ export const Button = styled.button`
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 50px;
-  margin: 10px;
-  padding: 8px 16px;
+  margin: ${p => p.margin || "10px"};
+  padding: ${p => p.padding || "8px 16px"};
+  font-size: ${p => p.fontSize || "14px"};
+  font-weight: ${p => p.fontWeight || "normal"};
   &:hover {
-    background-color: #ccc;
+    background-color: #333;
     color: white;
   }
   transition: all 0.3s ease-in-out;
