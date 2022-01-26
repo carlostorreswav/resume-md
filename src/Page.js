@@ -33,14 +33,14 @@ const LoadingAnimation = keyframes`
   }
 `
 
-const BrandAnimation = keyframes`
-  0% {
-    border-radius: 0px;
-  }
-  100% {
-    border-radius: 20px;
-  }
-`
+// const BrandAnimation = keyframes`
+//   0% {
+//     border-radius: 0px;
+//   }
+//   100% {
+//     border-radius: 20px;
+//   }
+// `
 
 const LoadingTrans = styled.div`
   margin: 2% auto;
