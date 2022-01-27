@@ -53,9 +53,11 @@ const Files = () => {
       })
   }
 
-  const deleteProc = resume => {
-    ctx.db.collection("resumesIndex").doc(resume.id).delete()
-    ctx.db.collection("resumes").doc(resume.data.indexID).delete()
+  const deleteProc = (resume, title) => {
+    if (window.confirm(`Are you sure you want to delete ${title}?`)) {
+      ctx.db.collection("resumesIndex").doc(resume.id).delete()
+      ctx.db.collection("resumes").doc(resume.data.indexID).delete()
+    }
   }
 
   const copyLink = resume => {
@@ -84,7 +86,7 @@ const Files = () => {
           <NameCard key={resume.id}>
             <NameTitle onClick={() => selectResume(resume)}>{resume.data.title}</NameTitle>
             <Button onClick={() => selectResume(resume)}>Edit</Button>
-            <Button onClick={() => deleteProc(resume)}>Delete</Button>
+            <Button onClick={() => deleteProc(resume, resume.data.title)}>Delete</Button>
             <Button>
               <CustomA
                 url={`https://resume-md.vercel.app/${resume.data.title}`}

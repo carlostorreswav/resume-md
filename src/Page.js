@@ -6,100 +6,71 @@ import MDEditor from "@uiw/react-md-editor"
 import styled, { keyframes } from "styled-components"
 import { Button } from "./Components"
 
-const LoadingMain = styled.div`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
 const LoadingAnimation = keyframes`
   0% {
     width: 0%;
-    height: 40%;
-  }
-  50% {
-    width: 100%;
-    height: 40%;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
   }
   99% {
     width: 100%;
-    height: 82%;
-  }
-`
-
-const LoadingAnimation2 = keyframes`
-  0% {
-    width: 0%;
-    height: auto;
-  }
-  99% {
-    width: 100%;
-    height: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   100% {
     width: auto;
-    height: auto;
   }
 `
 
-// const BrandAnimation = keyframes`
-//   0% {
-//     border-radius: 0px;
-//   }
-//   100% {
-//     border-radius: 20px;
-//   }
-// `
+const ShowAnimation = keyframes`
+  0% {
+    max-height: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  100% {
+    max-height: 3000px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+  }
+`
 
-const LoadingTrans = styled.div`
-  margin: 2% auto;
-  padding: 4%;
-  max-width: 1000px;
-  /* height: 82%; */
-  /* width: 1000px; */
-  animation: ${LoadingAnimation} 0.6s ease-in-out forwards;
-  /* border: 1px solid #ccc; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const ButtonAnimation = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 `
 
 const MainDiv = styled.div`
+  overflow: hidden;
   margin: 4% auto;
   padding: 80px;
   max-width: 1000px;
-  /* border: 1px solid #ccc; */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: ${LoadingAnimation2} 0.3s ease-in-out forwards;
+  animation: ${p => (p.loading ? LoadingAnimation : ShowAnimation)} 0.8s ease-in-out;
   background-color: white;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
   @media (max-width: 1100px) {
     margin: 0 auto;
     padding: 4%;
+    box-shadow: none;
   }
-  transition: margin 0.3s ease-in-out, padding 0.3s ease-in-out;
+  transition: margin 0.3s ease-in-out, padding 0.3s ease-in-out, box-shadow 1s ease-in-out;
 `
 
 const ButtonDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: -40px;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  @media (max-width: 1100px) {
+    margin-top: 40px;
+  }
+  animation: ${ButtonAnimation} 2s ease-in-out forwards;
 `
-
-// const BrandDiv = styled.div`
-//   padding: 16px 32px;
-//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-//   background-color: white;
-//   animation: ${BrandAnimation} 0.5s ease-in-out forwards;
-// `
 
 const Page = () => {
   let { id } = useParams()
-  const [resume, setResume] = useState({ loading: true, data: "" })
+  const [resume, setResume] = useState({ loading: true, data: "", error: false })
   const { ctx } = useContext(FirebaseContext)
 
   useEffect(() => {
@@ -115,9 +86,15 @@ const Page = () => {
               ...prev,
               loading: false,
               data: resume.data ? resume.data.md : "**PAGE NOT FOUND**",
+              error: !resume.data && true,
             }))
           } else {
-            setResume(prev => ({ ...prev, loading: false, data: "**PAGE NOT FOUND**" }))
+            setResume(prev => ({
+              ...prev,
+              loading: false,
+              data: "**PAGE NOT FOUND**",
+              error: true,
+            }))
           }
         })
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,48 +102,36 @@ const Page = () => {
 
   const printResume = () => {
     const printButton = document.getElementById("printButton")
+    const printMainDiv = document.getElementById("printMainDiv")
     printButton.style.display = "none"
-    MainDivRef.current.style.boxShadow = "none"
+    // MainDivRef.current.style.boxShadow = "none"
+    printMainDiv.style.boxShadow = "none"
     window.print()
     printButton.style.display = "block"
     MainDivRef.current.style.boxShadow =
-      "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+      "0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19)"
   }
 
   const MainDivRef = useRef(null)
 
   return (
     <>
-      {resume.loading === true ? (
-        <LoadingMain>
-          <LoadingTrans>
-            {/* <BrandDiv>
-              <h1>
-                <strong>RESUME.MD</strong>
-              </h1>
-            </BrandDiv> */}
-          </LoadingTrans>
-        </LoadingMain>
-      ) : (
-        <>
-          <MainDiv ref={MainDivRef}>
-            <MDEditor.Markdown source={resume.data} />
-          </MainDiv>
-          {resume.data !== "**PAGE NOT FOUND**" && (
-            <ButtonDiv>
-              <Button
-                id="printButton"
-                onClick={() => printResume()}
-                margin="40px"
-                padding="16px 32px"
-                fontSize="16px"
-                fontWeight="bold"
-              >
-                PRINT RESUME
-              </Button>
-            </ButtonDiv>
-          )}
-        </>
+      <MainDiv loading={resume.loading} ref={MainDivRef} id="printMainDiv">
+        <MDEditor.Markdown source={resume.data} />
+      </MainDiv>
+      {!resume.loading && !resume.error && (
+        <ButtonDiv>
+          <Button
+            id="printButton"
+            onClick={() => printResume()}
+            margin="0px"
+            padding="16px 32px"
+            fontSize="16px"
+            fontWeight="bold"
+          >
+            PRINT RESUME
+          </Button>
+        </ButtonDiv>
       )}
     </>
   )

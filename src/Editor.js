@@ -97,16 +97,11 @@ const Editor = () => {
           style={{
             width: "100%",
           }}
-          // height={"100%"}
           height={`calc(100% - ${hRef?.current?.clientHeight || 40})px`}
-          // maxHeight={`calc(100% - ${hRef?.current?.clientHeight || 40})px`}
-          // visiableDragbar={true}
-          // enableScroll={false}
           value={app.md}
           onChange={e => setApp(prev => ({ ...prev, md: e, touched: true }))}
         />
       </MainWrapper>
-      {/* <MDEditor.Markdown source={value} /> */}
     </>
   )
 }
