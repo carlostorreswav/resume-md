@@ -27,6 +27,17 @@ const LoadingAnimation = keyframes`
     width: 100%;
     height: 82%;
   }
+`
+
+const LoadingAnimation2 = keyframes`
+  0% {
+    width: 0%;
+    height: auto;
+  }
+  99% {
+    width: 100%;
+    height: auto;
+  }
   100% {
     width: auto;
     height: auto;
@@ -63,7 +74,7 @@ const MainDiv = styled.div`
   max-width: 1000px;
   /* border: 1px solid #ccc; */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  animation: ${LoadingAnimation} 0.3s ease-in-out forwards;
+  animation: ${LoadingAnimation2} 0.3s ease-in-out forwards;
   background-color: white;
   @media (max-width: 1100px) {
     margin: 0 auto;
