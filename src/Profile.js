@@ -3,7 +3,7 @@ import React, { useContext } from "react"
 import { FirebaseContext } from "./FirebaseContext"
 import styled from "styled-components"
 import { AppContext } from "./AppContext"
-import { Button, CustomHr } from "./Components"
+import { Button, CustomA, CustomHr } from "./Components"
 
 const ProfileMain = styled.div`
   /* position: absolute; */
@@ -72,7 +72,15 @@ const Profile = () => {
       )}
       <AbsWrapper>
         <AbsResume touched={app.touched}>
-          <h2>Resume.MD</h2>
+          <h2>
+            <CustomA
+              color="rgb(55, 53, 47);"
+              hoverColor="darkred"
+              url="https://github.com/carlostorreswav/resume-md"
+            >
+              Resume.MD
+            </CustomA>
+          </h2>
         </AbsResume>
       </AbsWrapper>
       <CustomHr />

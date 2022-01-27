@@ -1,6 +1,7 @@
 import { useContext } from "react"
 import styled from "styled-components"
 import { AppContext } from "./AppContext"
+import { CustomA } from "./Components"
 
 const HeaderMain = styled.div`
   /* height: 100%; */
@@ -37,10 +38,18 @@ const Header = () => {
     <HeaderMain touched={app.touched}>
       <MainWrapper touched={app.touched}>
         <MainTitle>
-          <h1>Resume.MD</h1>
+          <h1>
+            <CustomA
+              color="rgb(55, 53, 47);"
+              hoverColor="darkred"
+              url="https://github.com/carlostorreswav/resume-md"
+            >
+              Resume.MD
+            </CustomA>
+          </h1>
         </MainTitle>
         <SubTitle>
-          <p>Share your markdown resume stupidly fast</p>
+          <p>Share your markdown resume free and stupidly fast</p>
         </SubTitle>
       </MainWrapper>
     </HeaderMain>
