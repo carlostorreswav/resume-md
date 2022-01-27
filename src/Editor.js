@@ -57,6 +57,7 @@ const Editor = () => {
                 title: app.title,
                 owner: ctx.user.uid,
                 indexID: docRef.id,
+                locked: false,
               })
             )
         }

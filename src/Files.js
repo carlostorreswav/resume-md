@@ -55,8 +55,12 @@ const Files = () => {
 
   const deleteProc = (resume, title) => {
     if (window.confirm(`Are you sure you want to delete ${title}?`)) {
-      ctx.db.collection("resumesIndex").doc(resume.id).delete()
-      ctx.db.collection("resumes").doc(resume.data.indexID).delete()
+      if (resume.data.locked === true) {
+        alert("RESUME IS LOCKED, PLEASE UNLOCK IT FIRST")
+      } else {
+        ctx.db.collection("resumesIndex").doc(resume.id).delete()
+        ctx.db.collection("resumes").doc(resume.data.indexID).delete()
+      }
     }
   }
 
@@ -68,6 +72,13 @@ const Files = () => {
     document.execCommand("copy")
     document.body.removeChild(copyText)
     setCopy(true)
+  }
+
+  const lockProc = resume => {
+    ctx.db
+      .collection("resumesIndex")
+      .doc(resume.id)
+      .update({ locked: resume.data.locked ? false : true })
   }
 
   const [copy, setCopy] = useState(false)
@@ -99,6 +110,9 @@ const Files = () => {
               </CustomA>
             </Button>
             <Button onClick={() => copyLink(resume)}>{copy ? "Copied =D" : "Copy Link"}</Button>
+            <Button onClick={() => lockProc(resume)}>
+              {resume.data?.locked === true ? "Locked 🔐" : "Unlocked 🔓"}
+            </Button>
           </NameCard>
         ))}
       <CustomHr />
