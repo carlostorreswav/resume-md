@@ -15,7 +15,6 @@ Follow this steps to contribute:
     - Fork the repo
     - Create a new branch (fix/[name_of_fix] or feature/[name_of_feature])
     - PR your branch against the master branch
-    - I'll reviewed and follow you trhought the process if necessary
 
 You can check the final result [here](https://resume-md.vercel.app)
 
