@@ -1,11 +1,11 @@
 import React, { createContext, useState } from "react"
-import { defResume } from "./DefResume"
+import { defaultResume } from "./DefaultResume"
 
 export const AppContext = createContext({})
 
 export const AppProvider = ({ children }) => {
   const [app, setApp] = useState({
-    md: defResume,
+    md: defaultResume,
     title: "",
     touched: false,
   })

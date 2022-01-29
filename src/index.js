@@ -2,11 +2,11 @@ import React, { Suspense, lazy } from "react"
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import ReactDOM from "react-dom"
 import { createGlobalStyle } from "styled-components"
-import { FirebaseProvider } from "./FirebaseContext"
-import { AppProvider } from "./AppContext"
+import { FirebaseProvider } from "./Context/FirebaseContext"
+import { AppProvider } from "./Context/AppContext"
 
-const Home = lazy(() => import("./Home"))
-const Page = lazy(() => import("./Page"))
+const Home = lazy(() => import("./Pages/Home"))
+const Previewer = lazy(() => import("./Pages/Previewer"))
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -26,7 +26,7 @@ ReactDOM.render(
           <Suspense fallback={<></>}>
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route exact path="/:id" element={<Page />} />
+              <Route exact path="/:id" element={<Previewer />} />
             </Routes>
           </Suspense>
         </Router>

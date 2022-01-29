@@ -1,12 +1,11 @@
-import Editor from "./Editor"
-import Files from "./Files"
+import Editor from "../Modules/Editor"
+import FileSelector from "../Modules/FileSelector"
 import styled from "styled-components"
-import Header from "./Header"
-import Footer from "./Footer"
-import Profile from "./Profile"
+import Header from "../Layout/Header"
+import Footer from "../Layout/Footer"
+import Profile from "../Layout/Profile"
 
 const MainGrid = styled.div`
-  /* height: 100vh; */
   display: grid;
   grid-template-rows: auto auto auto 1fr auto;
 `
@@ -29,7 +28,7 @@ const Home = () => {
       <Header />
       <Profile />
       <GridRow>
-        <Files />
+        <FileSelector />
       </GridRow>
       <GridEditor>
         <Editor />

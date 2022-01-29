@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 import { useParams } from "react-router-dom"
 import { useContext, useState } from "react"
-import { FirebaseContext } from "./FirebaseContext"
+import { FirebaseContext } from "../Context/FirebaseContext"
 import MDEditor from "@uiw/react-md-editor"
 import styled, { keyframes } from "styled-components"
-import { Button } from "./Components"
+import { Button } from "../Modules/StyledComponents"
 
 const LoadingAnimation = keyframes`
   0% {
@@ -68,7 +68,7 @@ const ButtonDiv = styled.div`
   animation: ${ButtonAnimation} 2s ease-in-out forwards;
 `
 
-const Page = () => {
+const Previewer = () => {
   let { id } = useParams()
   const [resume, setResume] = useState({ loading: true, data: "", error: false })
   const { ctx } = useContext(FirebaseContext)
@@ -104,7 +104,6 @@ const Page = () => {
     const printButton = document.getElementById("printButton")
     const printMainDiv = document.getElementById("printMainDiv")
     printButton.style.display = "none"
-    // MainDivRef.current.style.boxShadow = "none"
     printMainDiv.style.boxShadow = "none"
     window.print()
     printButton.style.display = "block"
@@ -137,4 +136,4 @@ const Page = () => {
   )
 }
 
-export default Page
+export default Previewer

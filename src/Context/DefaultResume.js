@@ -1,4 +1,7 @@
-export const defResume = `# Connor Jessup
+export const defaultResume = `
+# *Resume Template to edit*
+
+# Connor Jessup 
 
 jessupcn@gmail.com  
 (248) 660-6584  

@@ -1,12 +1,11 @@
 import styled from "styled-components"
 import MDEditor from "@uiw/react-md-editor"
 import { useContext, useRef } from "react"
-import { FirebaseContext } from "./FirebaseContext"
-import { AppContext } from "./AppContext"
-import { Button, CustomA } from "./Components"
+import { FirebaseContext } from "../Context/FirebaseContext"
+import { AppContext } from "../Context/AppContext"
+import { Button, CustomA } from "./StyledComponents"
 
 const MainWrapper = styled.div`
-  /* height: 98%; */
   width: 98%;
 `
 

@@ -26,7 +26,7 @@ export const CustomHr = styled.hr`
   background-color: #ccc;
 `
 
-const MyA = styled.a`
+const AHref = styled.a`
   color: ${p => p.color || "pink"};
   text-decoration: ${p => p.textDecoration || "underline"};
   font-weight: ${p => p.fontWeight || "bold"};
@@ -42,9 +42,9 @@ export const CustomA = props => {
   return (
     <>
       &nbsp;
-      <MyA href={rest.url} target="_blank" rel="noreferrer" {...rest}>
+      <AHref href={rest.url} target="_blank" rel="noreferrer" {...rest}>
         {children}
-      </MyA>
+      </AHref>
       &nbsp;
     </>
   )

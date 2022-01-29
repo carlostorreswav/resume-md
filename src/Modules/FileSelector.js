@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
-import { FirebaseContext } from "./FirebaseContext"
-import { AppContext } from "./AppContext"
-import { Button, CustomA, CustomHr } from "./Components"
+import { FirebaseContext } from "../Context/FirebaseContext"
+import { AppContext } from "../Context/AppContext"
+import { Button, CustomA, CustomHr } from "../Modules/StyledComponents"
 import styled from "styled-components"
 
 const FilesMain = styled.div`
@@ -28,7 +28,7 @@ const ListTitle = styled.div`
   text-align: center;
 `
 
-const Files = () => {
+const FileSelector = () => {
   const { ctx } = useContext(FirebaseContext)
   const [resumes, setResumes] = useState([])
   const { app, setApp } = useContext(AppContext)
@@ -120,4 +120,4 @@ const Files = () => {
   )
 }
 
-export default Files
+export default FileSelector

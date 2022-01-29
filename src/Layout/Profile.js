@@ -1,22 +1,18 @@
 // Import FirebaseAuth and firebase.
 import React, { useContext } from "react"
-import { FirebaseContext } from "./FirebaseContext"
+import { FirebaseContext } from "../Context/FirebaseContext"
 import styled from "styled-components"
-import { AppContext } from "./AppContext"
-import { Button, CustomA, CustomHr } from "./Components"
+import { AppContext } from "../Context/AppContext"
+import { Button, CustomA, CustomHr } from "../Modules/StyledComponents"
 
 const ProfileMain = styled.div`
-  /* position: absolute; */
   width: 100%;
   margin: 0 auto;
-  /* padding-top: ${p => (p.touched === true ? "0px" : "120px")}; */
   transition: padding-top 0.3s ease-in-out;
-  /* overflow: hidden; */
 `
 
 const ProfileDiv = styled.div`
   text-align: center;
-  /* border: 1px solid grey; */
   padding: 10px;
   padding-top: 20px;
   padding-left: 20px;
@@ -28,7 +24,6 @@ const ProfileDiv = styled.div`
 
 const ProfileDiv2 = styled.div`
   text-align: center;
-  /* border: 1px solid grey; */
   padding: 10px;
   display: flex;
   align-items: center;

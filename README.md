@@ -1,6 +1,6 @@
 # [Resume.MD](https://resume-md.vercel.app)
 
-Hi there, this is simple React App to create and share resumes in markdown.
+Hi there, this is simple React app to create and share resumes in markdown format.
 
 As any other CRA, `yarn install` and `yarn start` are enough to run the project on a local env.
 

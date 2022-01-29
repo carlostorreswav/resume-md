@@ -1,11 +1,10 @@
 import { useContext } from "react"
 import styled from "styled-components"
-import { AppContext } from "./AppContext"
-import { CustomA } from "./Components"
+import { AppContext } from "../Context/AppContext"
+import { CustomA } from "../Modules/StyledComponents"
 
 const HeaderMain = styled.div`
   height: 100%;
-  /* height: ${p => (p.touched === true ? "0px" : "100px")}; */
   background-color: white;
   color: rgb(55, 53, 47);
   transition: height 0.5s ease-in-out;
