@@ -48,7 +48,7 @@ const Header = () => {
           </h1>
         </MainTitle>
         <SubTitle>
-          <p>Share your markdown resume free and stupidly fast</p>
+          <p>Share your resume on markdown format free and fast</p>
         </SubTitle>
       </MainWrapper>
     </HeaderMain>
